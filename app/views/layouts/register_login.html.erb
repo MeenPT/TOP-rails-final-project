@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Top Rails Final Project" %></title>
+    <title><%= content_for(:title) %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
@@ -17,10 +17,11 @@
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-  <body>
-    <main>
-      <button class="btn btn-primary">Click Me</button>
-      <%= yield %>
-    </main>
+  <body class="bg-base-200">
+    <div class="flex items-center justify-center h-screen">
+      <main class="bg-base-100 w-[90%] max-w-screen-sm rounded-box p-8 shadow-md">
+        <%= yield %>
+      </main>
+    </div>
   </body>
 </html>
