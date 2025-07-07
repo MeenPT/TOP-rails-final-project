@@ -12,6 +12,6 @@ class User < ApplicationRecord
 
   private
     def create_profile
-      create_profile!(display_name: username)
+      Profile.create(display_name: username, user_id: id)
     end
 end
