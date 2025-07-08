@@ -1,0 +1,18 @@
+<h1 class="mb-24 text-5xl font-bold"><%= @is_owner ? "My Profile" : "#{@profile.display_name}'s Profile"  %></h1>
+<section class="relative p-8 pt-24 space-y-10 shadow bg-base-100 rounded-box">
+  <h2 class="sr-only">User Information</h2>
+  <div class="absolute top-0 -translate-y-1/2 left-8">
+    <%= image_tag "avatar_placeholder.png", alt: @profile.display_name, class: "size-32 bg-center object-cover rounded-full border border-4 border-base-200" %>
+  </div>
+  <article>
+    <h2 class="sr-only">Display name</h2>
+    <p class="text-4xl font-bold"><%= @profile.display_name %></p>
+    <span class="font-mono text-sm text-neutral"><%= "@#{current_user.username}" %></span>
+  </article>
+  <% if @profile.bio %>
+    <article>
+      <h2 class="mb-4 text-2xl font-bold">Bio</h2>
+      <p class="text-sm opacity-80"><%= @profile.bio %></p>
+    </article>
+  <% end %>
+</section>
