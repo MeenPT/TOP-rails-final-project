@@ -2,10 +2,8 @@
   popovertarget="header__menu"
   style="anchor-name:--header-menu" 
   class="cursor-pointer">
-  <div class="avatar">
-    <div class="w-10 rounded">
-      <%= image_tag "avatar_placeholder.png", alt: "user avatar" %>
-    </div>
+  <div class="bg-white rounded-full w-fit">
+    <%= image_tag current_user.profile.avatar.attached? ? current_user.profile.avatar.variant(:thumb) : "avatar_placeholder.png", alt: "user avatar", class: "size-10 rounded-full object-cover" %>
   </div>
 </button>
 <div
@@ -13,6 +11,10 @@
   id="header__menu"
   style="position-anchor:--header-menu"
   class="mt-4 shadow-sm dropdown dropdown-end lg:dropdown-center menu w-52 rounded-box bg-base-100">
+  <div class="p-2 mb-2" >
+    <p class="font-medium"><%= current_user.profile.display_name %></p>
+    <span class="text-xs text-neutral"><%= "@#{current_user.username}" %></span>
+  </div>
   <ul>
     <li>
       <%= link_to current_user.profile, class: "flex items-center" do %>
