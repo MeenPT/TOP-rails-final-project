@@ -1,5 +1,13 @@
 <h1 class="mb-24 text-5xl font-bold"><%= @is_owner ? "My Profile" : "#{@profile.display_name}'s Profile"  %></h1>
 <section class="relative p-8 pt-24 space-y-10 shadow bg-base-100 rounded-box">
+  <% if @is_owner %>
+    <div class="absolute top-8 right-8">
+      <%= link_to edit_profile_path(@profile), class: "btn btn-sm btn-square tooltip", data: { tip: "Edit profile"} do %>
+        <span class="sr-only">Edit</span>
+        <svg class="size-4" xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-edit"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" /><path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" /><path d="M16 5l3 3" /></svg>
+      <% end %>
+    </div>
+  <% end %>
   <h2 class="sr-only">User Information</h2>
   <div class="absolute top-0 -translate-y-1/2 left-8">
     <%= image_tag "avatar_placeholder.png", alt: @profile.display_name, class: "size-32 bg-center object-cover rounded-full border border-4 border-base-200" %>
