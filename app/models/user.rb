@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   after_create :create_profile
 
-  has_one :profile
+  has_one :profile, dependent: :destroy
 
   validates :username, presence: true, uniqueness: true
 
