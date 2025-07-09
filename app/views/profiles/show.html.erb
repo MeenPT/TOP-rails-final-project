@@ -9,8 +9,10 @@
     </div>
   <% end %>
   <h2 class="sr-only">User Information</h2>
-  <div class="absolute top-0 -translate-y-1/2 left-8">
-    <%= image_tag "avatar_placeholder.png", alt: @profile.display_name, class: "size-32 bg-center object-cover rounded-full border border-4 border-base-200" %>
+  <div class="absolute top-0 -translate-y-1/2 bg-white rounded-full shadow-sm left-8 w-fit">
+    <%= image_tag @profile.avatar.attached? ? @profile.avatar.variant(resize_to_limit: [150, 150]) : "avatar_placeholder.png",
+                  alt: @profile.display_name,
+                  class: "size-32 bg-center object-cover rounded-full border border-4 border-base-200" %>
   </div>
   <article>
     <h2 class="sr-only">Display name</h2>

@@ -3,6 +3,27 @@
     <h3 class="text-lg font-bold">Edit Profile</h3>
     <div>
       <%= form_for(@profile, builder: DaisyFormBuilder) do |f| %>
+        <!--AVATAR FIELD-->
+        <div data-controller="avatar-preview" class="flex flex-col items-center my-8">
+          <div class="avatar">
+            <div class="w-24 rounded-full">
+              <%= image_tag @profile.avatar.attached? ? @profile.avatar.variant(resize_to_limit: [150, 150]) : "avatar_placeholder.png",
+                            alt: "Avatar preview",
+                            data: { avatar_preview_target: "preview" } %>
+            </div>
+          </div>
+          <div class="mt-3 text-center">
+            <%= f.label :avatar, class: "btn btn-sm" do %>
+              Upload avatar
+            <% end %>
+            <%= f.file_field :avatar,
+                             hidden: true,
+                             accept: Profile::SUPPORTED_AVATAR_FORMATS.join(","),
+                             data: { action: "avatar-preview#onChange"} %>
+            <%= f.error :avatar, class: "text-error text-xs mt-2" %>
+          </div>
+        </div>
+        <!--INPUT FIELDS-->
         <div class="mt-6">
           <div class="fieldset">
             <%= f.label :display_name %>
@@ -16,8 +37,8 @@
           </div>
         </div>
         <div class="flex items-center mt-6 gap-x-2">
-          <%= f.submit "Save changes", class: "btn btn-sm btn-primary" %>
-          <%= link_to "Cancel", @profile, class: "btn btn-sm" %>
+          <%= f.submit "Save changes", class: "btn btn-primary" %>
+          <%= link_to "Cancel", @profile, class: "btn btn-secondary" %>
         </div>
       <% end %>
     </div>
