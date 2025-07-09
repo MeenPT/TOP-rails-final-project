@@ -14,6 +14,11 @@ class DaisyFormBuilder < ActionView::Helpers::FormBuilder
     super(method, options)
   end
 
+  def textarea(method, options = {})
+    options[:class] ||= "textarea w-full"
+    super(method, options)
+  end
+
   def error(method, options = {})
     if object.errors[method]
       options[:class] ||= "label text-error"

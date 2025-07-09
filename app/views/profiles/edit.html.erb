@@ -1,1 +1,25 @@
-<h1 class="mb-24 text-5xl font-bold">Edit Profile</h1>
+<dialog id="my_modal_1" class="modal modal-open">
+  <div class="modal-box">
+    <h3 class="text-lg font-bold">Edit Profile</h3>
+    <div>
+      <%= form_for(@profile, builder: DaisyFormBuilder) do |f| %>
+        <div class="mt-6">
+          <div class="fieldset">
+            <%= f.label :display_name %>
+            <%= f.text_field :display_name , auto_focus: true %>
+            <%= f.error :display_name  %>
+          </div>
+          <div class="fieldset">
+            <%= f.label :bio %>
+            <%= f.textarea :bio, placeholder: "Tell other people about yourself" %>
+            <%= f.error :bio %>
+          </div>
+        </div>
+        <div class="flex items-center mt-6 gap-x-2">
+          <%= f.submit "Save changes", class: "btn btn-sm btn-primary" %>
+          <%= link_to "Cancel", @profile, class: "btn btn-sm" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</dialog>
