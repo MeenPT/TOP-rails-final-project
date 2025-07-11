@@ -27,8 +27,8 @@ class DaisyFormBuilder < ActionView::Helpers::FormBuilder
     end
   end
 
-  def submit(method, options = {})
+  def submit(value = nil, options = {})
     options[:class] ||= "btn btn-primary"
-    super(method, options)
+    super(value, options)
   end
 end
