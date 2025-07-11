@@ -7,6 +7,7 @@ class User < ApplicationRecord
   after_create :create_profile
 
   has_one :profile, dependent: :destroy
+  has_many :posts, dependent: :destroy
 
   validates :username, presence: true, uniqueness: true
 

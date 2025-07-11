@@ -4,7 +4,8 @@ Rails.application.routes.draw do
     registrations: "users/registrations"
   }
 
-  root "pages#home"
+  root "posts#index"
+  resources :posts
   resources :profiles, only: %i[ show edit update ]
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
