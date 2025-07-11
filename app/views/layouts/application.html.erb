@@ -22,5 +22,7 @@
     <main class="mx-auto w-[90%] max-w-screen-lg pt-30">
       <%= yield %>
     </main>
+    <%= render "layouts/notice_toast" if notice %>
+    <%= render "layouts/alert_toast" if alert %>
   </body>
 </html>
