@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_post, only: %i[ show edit update destroy ]
 
   # GET /posts or /posts.json
@@ -17,11 +18,14 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
+    if @post.user != current_user
+      redirect_to posts_path, alert: "Unauthorized access."
+    end
   end
 
   # POST /posts or /posts.json
   def create
-    @post = Post.new(post_params)
+    @post = current_user.posts.new(post_params)
 
     respond_to do |format|
       if @post.save
@@ -36,6 +40,13 @@ class PostsController < ApplicationController
 
   # PATCH/PUT /posts/1 or /posts/1.json
   def update
+    if @post.user != current_user
+      respond_to do |format|
+        format.html { redirect_to :edit, alert: "Unauthorized access." }
+        format.json { render json: { message: "Unauthorized access.", status: :unauthorized } }
+      end
+    end
+
     respond_to do |format|
       if @post.update(post_params)
         format.html { redirect_to @post, notice: "Post was successfully updated." }
@@ -49,6 +60,13 @@ class PostsController < ApplicationController
 
   # DELETE /posts/1 or /posts/1.json
   def destroy
+    if @post.user != current_user
+      respond_to do |format|
+        format.html { redirect_to :edit, alert: "Unauthorized access." }
+        format.json { render json: { message: "Unauthorized access.", status: :unauthorized } }
+      end
+    end
+
     @post.destroy!
 
     respond_to do |format|
@@ -65,6 +83,6 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.expect(post: [ :title, :content, :user_id ])
+      params.expect(post: [ :title, :content ])
     end
 end
