@@ -10,6 +10,15 @@
       <%= f.textarea :content, placeholder: "(Optional)" %>
       <%= f.error :content %>
     </div>
+    <div class="fieldset">
+      <%= f.label :images %>
+      <%= f.file_field :images, class: "file-input w-full", accept: Post::SUPPORTED_IMAGES_FORMATS.join(", "), multiple: true %>
+      <%= f.error :images %>
+    </div>
+    <!--EXISTING IMAGES-->
+    <% post.images.each do |image| %>
+      <%= f.hidden_field :images, multiple: true, value: image.signed_id %>
+    <% end %>
   </div>
   <div class="flex mt-6 space-x-2">
     <%= f.submit %>
