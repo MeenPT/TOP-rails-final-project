@@ -1,5 +1,6 @@
-<div class="p-6 shadow bg-base-100 rounded-box">
+<div class="p-6 space-y-6 shadow bg-base-100 rounded-box">
   <%= render "posts/post_header", post: post %>
   <%= render "posts/post_body", post: post %>
+  <%= render "posts/post_carousel", post: post if post.images.attached? %>
   <%= render "posts/post_footer", post: post %>
 </div>
