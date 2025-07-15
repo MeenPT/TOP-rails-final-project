@@ -31,6 +31,7 @@ class PostsController < ApplicationController
       if @post.save
         format.html { redirect_to @post, notice: "Post was successfully created." }
         format.json { render :show, status: :created, location: @post }
+        format.turbo_stream
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @post.errors, status: :unprocessable_entity }
@@ -44,6 +45,7 @@ class PostsController < ApplicationController
       respond_to do |format|
         format.html { redirect_to :edit, alert: "Unauthorized access." }
         format.json { render json: { message: "Unauthorized access.", status: :unauthorized } }
+        format.turbo_stream
       end
     end
 
@@ -72,6 +74,7 @@ class PostsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to posts_path, status: :see_other, notice: "Post was successfully destroyed." }
       format.json { head :no_content }
+      format.turbo_stream
     end
   end
 

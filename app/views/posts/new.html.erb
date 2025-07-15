@@ -1,5 +1,18 @@
 <% content_for :title, "New post" %>
-<h1 class="mb-10 text-4xl font-bold">New post</h1>
-<div class="p-8 shadow bg-base-100 rounded-box">
-  <%= render "form", post: @post %>
-</div>
+<% if turbo_frame_request? %>
+  <%= turbo_frame_tag Post.new do %>
+    <dialog class="modal modal-open">
+      <div class="modal-box">
+        <h3 class="text-lg font-bold">New Post</h3>
+        <div class="py-4">
+          <%= render "form", post: @post %>
+        </div>
+      </div>
+    </dialog>
+  <% end %>
+<% else %>
+  <h1 class="mb-10 text-4xl font-bold">New post</h1>
+  <div class="p-8 shadow bg-base-100 rounded-box">
+    <%= render "form", post: @post %>
+  </div>
+<% end %>
