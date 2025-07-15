@@ -12,4 +12,8 @@ class Profile < ApplicationRecord
             limit: { max: 1 },
             content_type: SUPPORTED_AVATAR_FORMATS,
             size: { less_than_or_equal_to: 10.megabytes }
+
+  def avatar_url
+    avatar.attached? ? avatar.variant(:thumb) : "avatar_placeholder.png"
+  end
 end

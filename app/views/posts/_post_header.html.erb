@@ -1,7 +1,7 @@
 <div class="flex">
   <div>
     <figure class="flex items-center">
-      <%= image_tag post.profile.avatar.variant(:thumb), class: "size-10 rounded-full object-cover", alt: "#{post.profile.display_name} avatar image" %>
+      <%= image_tag post.profile.avatar_url, class: "size-10 rounded-full object-cover", alt: "#{post.profile.display_name} avatar image" %>
       <figcaption class="ml-3 font-medium"><%= post.profile.display_name %></figcaption>
     </figure>
     <time class="pl-1 ml-12 text-xs text-secondary opacity-60" datetime="<%= post.created_at %>"><%= time_ago_in_words(post.created_at) %></time>
