@@ -4,4 +4,5 @@ class Like < ApplicationRecord
 
   validates_associated :user
   validates_associated :post
+  validates :post, uniqueness: { scope: :user, message: "already liked the post" }
 end

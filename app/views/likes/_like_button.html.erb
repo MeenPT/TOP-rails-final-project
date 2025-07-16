@@ -1,0 +1,11 @@
+<%= turbo_frame_tag dom_id(post, :like) do %>
+  <% if like %>
+    <%= button_to like, method: :delete, class: "btn btn-sm" do %>
+      Unlike (<%= likes_count %>)
+    <% end %>
+  <% else %>
+    <%= button_to likes_path, method: :post, class: "btn btn-sm", params: { post_id: post.id} do %>
+      Like (<%= likes_count %>)
+    <% end %>
+  <% end %>
+<% end %>

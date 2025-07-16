@@ -1,4 +1,7 @@
 <div class="flex space-x-3">
-  <button class="btn btn-sm">Like</button>
+  <%= render "likes/like_button",
+              like: post.likes.find_by(user: current_user),
+              likes_count: post.likes.count,
+              post: post  %>
   <button class="btn btn-sm">Comment</button>
 </div>
